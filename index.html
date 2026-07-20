@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Md Nayeem Lapasam — Portfolio</title>
+  <style>
+    :root{
+      --bg:#F5F1E8; --surface:#FCFAF5; --text:#252525; --muted:#6D6A63;
+      --orange:#D97745; --orange-dark:#B9572E; --gold:#E4B860;
+      --line:#DED6C9; --dark:#1F1813;
+      --serif:Georgia,"Times New Roman",serif;
+      --sans:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;color:var(--text);font-family:var(--sans);
+      background:
+        radial-gradient(circle at 80% 10%,rgba(228,184,96,.20),transparent 26%),
+        radial-gradient(circle at 92% 38%,rgba(217,119,69,.10),transparent 24%),
+        var(--bg);
+    }
+    a{text-decoration:none;color:inherit}
+    .shell{width:min(1720px,calc(100% - 24px));margin:auto}
+    .nav-wrap{position:sticky;top:18px;z-index:20;padding-top:18px}
+    nav{
+      width:min(950px,100%);margin:auto;min-height:58px;padding:9px 26px;border-radius:999px;
+      display:flex;align-items:center;justify-content:center;gap:60px;
+      background:rgba(245,241,232,.86);border:1px solid rgba(37,37,37,.08);
+      backdrop-filter:blur(16px);box-shadow:0 14px 40px rgba(70,52,34,.08);
+      font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    }
+    nav a{position:relative}
+    nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-6px;height:1px;background:var(--orange);transition:.25s}
+    nav a:hover::after{right:0}
+
+    .hero{
+      min-height:850px;margin-top:26px;padding:82px 56px 28px 72px;
+      display:grid;grid-template-columns:minmax(560px,.92fr) minmax(620px,1.08fr);align-items:center;
+      position:relative;overflow:hidden;border-radius:34px;
+      background:
+        radial-gradient(circle at 76% 42%,rgba(228,184,96,.27),transparent 31%),
+        radial-gradient(circle at 72% 54%,rgba(217,119,69,.10),transparent 27%),
+        linear-gradient(120deg,rgba(252,250,245,.96),rgba(245,241,232,.84));
+      border:1px solid rgba(37,37,37,.07);
+    }
+    #stars{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+    .hero::before{
+      content:"";position:absolute;right:6%;top:13%;width:48%;height:70%;
+      border-radius:50%;pointer-events:none;
+      background:radial-gradient(circle,rgba(228,184,96,.18),rgba(217,119,69,.07) 48%,transparent 72%);
+      filter:blur(8px);
+    }
+    .hero::after{
+      content:"";position:absolute;right:13%;bottom:3.5%;width:34%;height:42px;
+      border-radius:50%;pointer-events:none;
+      background:radial-gradient(ellipse,rgba(74,53,35,.20),rgba(74,53,35,.06) 48%,transparent 72%);
+      filter:blur(9px);
+    }
+    .copy,.portrait{position:relative;z-index:2}
+    .availability{
+      display:inline-flex;align-items:center;gap:10px;padding:7px 12px;border:1px solid var(--line);
+      border-radius:999px;background:rgba(252,250,245,.70);color:var(--muted);
+      font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+    }
+    .availability i{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 6px rgba(217,119,69,.10)}
+    .hello{margin-top:30px;font-size:clamp(28px,3.8vw,49px);line-height:1;font-weight:500}
+    h1{margin:10px 0 24px;font-family:var(--serif);font-size:clamp(72px,9.1vw,132px);line-height:.86;letter-spacing:-.055em;font-weight:400}
+    .name{background:linear-gradient(90deg,var(--orange-dark),var(--orange),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .role{font-size:21px;line-height:1.5;font-weight:750;margin-bottom:20px}
+    .intro{max-width:660px;color:var(--muted);font-size:18px;line-height:1.8}
+    .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+    .animated-border{position:relative;display:inline-block;isolation:isolate;overflow:hidden;padding:1px;border-radius:999px}
+    .animated-border::before{
+      content:"";position:absolute;inset:-120%;z-index:-2;
+      background:conic-gradient(transparent 0 72%,var(--gold) 80%,var(--orange) 87%,transparent 94%);
+      animation:spin 3.2s linear infinite
+    }
+    .animated-border::after{content:"";position:absolute;inset:1px;z-index:-1;border-radius:inherit;background:var(--surface)}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .btn{display:inline-flex;align-items:center;gap:9px;padding:13px 20px;border-radius:999px;font-size:13px;font-weight:750}
+    .btn.primary{background:var(--orange-dark);color:#fff}.btn.secondary{background:rgba(252,250,245,.78);border:1px solid var(--line)}
+    .socials{display:flex;gap:11px;margin-top:25px}
+    .social{width:43px;height:43px;border-radius:50%;display:grid;place-items:center;background:rgba(252,250,245,.78);font-size:12px;font-weight:800;overflow:hidden}
+    .social img{width:24px;height:24px;object-fit:contain;display:block}
+    .social.gmail img{width:26px;height:20px;border-radius:3px}
+    .social.phone img{width:24px;height:24px;object-fit:contain}
+    .contact-icon-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:30px}
+    .contact-icon-link{display:inline-flex;align-items:center;gap:12px;padding:12px 16px;border:1px solid rgba(255,255,255,.16);border-radius:16px;background:rgba(255,255,255,.04);color:#fff}
+    .contact-icon-link img{height:30px;width:auto;object-fit:contain}
+    .contact-icon-link.linkedin-full img{height:34px;max-width:150px}
+    .contact-details{display:grid;gap:8px;margin-top:28px;color:#D9CBBB;font-size:14px}
+    .contact-details strong{color:var(--gold);font-weight:700}
+
+    .portrait{height:100%;display:flex;align-items:flex-end;justify-content:center;transform:translateX(-58px)}
+    .portrait img{
+      display:block;width:min(760px,118%);max-width:none;height:auto;object-fit:contain;object-position:center bottom;
+      transform:translateY(46px);
+      filter:drop-shadow(0 34px 38px rgba(71,51,34,.18)) saturate(.96) contrast(.99);
+      mix-blend-mode:normal;
+    }
+
+    .section{padding:112px 0}
+    .kicker{margin-bottom:22px;color:var(--orange-dark);font-size:12px;font-weight:800;letter-spacing:.17em;text-transform:uppercase}
+    .about-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:100px;align-items:start}
+    .about-copy{font-family:var(--serif);font-size:clamp(28px,3.2vw,43px);line-height:1.42;letter-spacing:-.02em}
+    .quick h3{margin:0 0 24px;font-size:21px}
+    .quick a{display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px solid var(--line);color:var(--muted)}
+    .quick span{width:35px;height:35px;display:grid;place-items:center;border:1px solid var(--line);border-radius:9px;color:var(--orange-dark);font-size:11px;font-weight:800}
+
+    .projects-head{display:flex;justify-content:space-between;align-items:end;gap:32px;margin-bottom:35px}
+    .projects-head h2{margin:0;font-family:var(--serif);font-size:clamp(46px,6vw,78px);font-weight:400;letter-spacing:-.04em}
+    .projects-head p{max-width:430px;color:var(--muted);line-height:1.65}
+    .project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .flip-card{height:390px;perspective:1200px;cursor:pointer;scroll-margin-top:110px}
+    .flip-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+    .flip-card:hover .flip-inner,.flip-card.active .flip-inner{transform:rotateY(180deg)}
+    .face{position:absolute;inset:0;display:flex;flex-direction:column;padding:26px;overflow:hidden;border-radius:25px;border:1px solid var(--line);background:var(--surface);backface-visibility:hidden}
+    .back{transform:rotateY(180deg);padding:0;background:linear-gradient(140deg,var(--gold),var(--orange))}
+    .mock{margin:22px;flex:1;display:grid;place-items:center;text-align:center;padding:20px;border-radius:18px;background:rgba(255,255,255,.80);font-weight:800}
+    .tag{color:var(--orange-dark);font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+    .face h3{margin:22px 0 12px;font-family:var(--serif);font-size:33px;font-weight:400}
+    .face p{color:var(--muted);font-size:14px;line-height:1.65}
+    .bottom{margin-top:auto;display:flex;justify-content:space-between;gap:15px;font-size:12px;font-weight:800}
+
+    .focus-layout{display:grid;grid-template-columns:1.2fr .8fr;gap:80px;align-items:start}
+    .focus-links{display:grid;gap:14px}
+    .focus-link{
+      display:grid;grid-template-columns:44px 1fr auto;gap:14px;align-items:center;
+      padding:17px;border:1px solid var(--line);border-radius:18px;background:rgba(252,250,245,.72);
+      transition:.25s;
+    }
+    .focus-link:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(70,52,34,.08);border-color:rgba(217,119,69,.4)}
+    .focus-icon{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:#F3E5D8;color:var(--orange-dark);font-weight:800}
+    .focus-link strong{display:block;margin-bottom:4px}.focus-link small{color:var(--muted);line-height:1.45}
+
+    .skills-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+    .skill-card{
+      min-height:230px;padding:28px;border:1px solid var(--line);border-radius:24px;background:var(--surface);
+      box-shadow:0 14px 34px rgba(70,52,34,.05);
+    }
+    .skill-mark{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;background:#F3E5D8;color:var(--orange-dark);font-weight:900}
+    .skill-card h3{font-family:var(--serif);font-size:30px;font-weight:400;margin:24px 0 10px}
+    .skill-card p{color:var(--muted);line-height:1.65;margin:0}
+
+    .contact{margin:30px 0 55px;padding:72px 64px;position:relative;overflow:hidden;border-radius:30px;background:var(--dark);color:#F8EFE5}
+    .contact::after{content:"";position:absolute;right:-100px;bottom:-120px;width:390px;height:390px;border-radius:50%;background:radial-gradient(circle,rgba(217,119,69,.30),transparent 68%)}
+    .contact .kicker{color:var(--gold)}.contact h2{margin:14px 0 28px;font-size:clamp(64px,9vw,118px);line-height:.9;letter-spacing:-.06em}
+    .contact p{max-width:680px;color:#D9CBBB;font-size:16px;line-height:1.75}.contact .btn.primary{background:var(--orange)}
+    .contact .btn.secondary{color:#fff;background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.18)}
+    
+    footer{padding:10px 0 65px;display:flex;justify-content:space-between;color:var(--muted);font-size:13px}
+
+    .reveal{opacity:0;transform:translateY(18px);filter:blur(9px);transition:opacity .75s ease,transform .75s ease,filter .75s ease}
+    .reveal.visible{opacity:1;transform:none;filter:none}
+    .delay-1{transition-delay:.10s}.delay-2{transition-delay:.20s}.delay-3{transition-delay:.30s}.delay-4{transition-delay:.40s}
+
+    @media(max-width:900px){
+      nav{gap:28px}.hero{grid-template-columns:1fr;padding:58px 30px 20px;min-height:auto}
+      .portrait{justify-content:center;margin-top:20px;transform:none}.portrait img{width:min(590px,106%);max-width:106%;transform:translateY(24px)}
+      .about-grid,.focus-layout{grid-template-columns:1fr;gap:55px}.project-grid{grid-template-columns:1fr}
+      .skills-grid{grid-template-columns:1fr}.flip-card{height:330px}
+    }
+    @media(max-width:620px){
+      .shell{width:calc(100% - 18px)}nav{gap:17px;font-size:10px}nav a:nth-child(3){display:none}
+      .hero{border-radius:24px}.hello{font-size:29px}h1{font-size:66px}.projects-head{display:block}
+      .contact{padding:55px 25px}footer{display:block;line-height:2}
+    }
+  </style>
+</head>
+<body>
+  <div class="shell nav-wrap">
+    <nav>
+      <a href="#projects">Work</a>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+
+  <main class="shell">
+    <section class="hero">
+      <canvas id="stars"></canvas>
+      <div class="copy">
+        <div class="availability reveal"><i></i> Open to technology-focused opportunities</div>
+        <div class="hello reveal delay-1">Hi, I'm</div>
+        <h1 class="reveal delay-2"><span class="name">Md Nayeem<br>Lapasam</span></h1>
+        <div class="role reveal delay-3">Operations Professional · AI & Automation Enthusiast · Problem Solver</div>
+        <p class="intro reveal delay-4">I bring more than eight years of experience across customer operations, collections, order management and technical support, while actively building practical skills in AI, automation, SQL and modern web development.</p>
+        <div class="actions reveal delay-4">
+          <span class="animated-border"><a class="btn primary" href="#projects">View my projects →</a></span>
+          <span class="animated-border"><a class="btn secondary" href="#contact">Say hello</a></span>
+        </div>
+        <div class="socials reveal delay-4">
+          <span class="animated-border"><a class="social" target="_blank" aria-label="LinkedIn" href="https://www.linkedin.com/in/md-nayeem-lapasam"><img src="assets/images/linkedin-circle.png" alt=""></a></span>
+          <span class="animated-border"><a class="social gmail" aria-label="Email" href="mailto:mnlapasam@gmail.com"><img src="assets/images/gmail.jpg" alt=""></a></span>
+          <span class="animated-border"><a class="social phone" aria-label="Phone" href="tel:+919676720772"><img src="assets/images/phone.png" alt=""></a></span>
+        </div>
+      </div>
+      <div class="portrait reveal delay-2">
+        <img src="assets/images/profile-transparent.png" alt="Md Nayeem Lapasam professional portrait" />
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="kicker reveal">About</div>
+      <div class="about-grid">
+        <div class="about-copy reveal delay-1">I am an operations and customer service professional with more than eight years of experience across global organizations. My work has centred on solving customer problems, maintaining quality, handling escalations and improving day-to-day operations. Today, I am extending that experience into AI, automation, SQL and digital product development.</div>
+        <aside class="quick reveal delay-2">
+          <h3>Get to know me</h3>
+          <a href="#experience"><span>01</span>Professional experience</a>
+          <a href="#projects"><span>02</span>Current projects</a>
+          <a href="#skills"><span>03</span>Skills & certifications</a>
+          <a href="#contact"><span>04</span>Contact details</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="projects-head reveal">
+        <div><div class="kicker">Selected work</div><h2>Current projects</h2></div>
+        <p>Hover or click a project card to flip it and reveal a project visual. Images and detailed case studies can be added later.</p>
+      </div>
+      <div class="project-grid">
+        <article class="flip-card reveal" id="focusos">
+          <div class="flip-inner">
+            <div class="face"><div class="tag">Productivity Platform</div><h3>FocusOS</h3><p>A living productivity workspace with AI companions, themes, calendar planning and interactive focus experiences.</p><div class="bottom"><span>Active project</span><span>Flip card ↗</span></div></div>
+            <div class="face back"><div class="mock">FocusOS interface preview</div></div>
+          </div>
+        </article>
+        <article class="flip-card reveal delay-1" id="manga">
+          <div class="flip-inner">
+            <div class="face"><div class="tag">Creative Project</div><h3>Original Manga Creation</h3><p>An original cyberpunk manga project focused on character development, world-building, visual consistency and AI-assisted production workflows.</p><div class="bottom"><span>In progress</span><span>Flip card ↗</span></div></div>
+            <div class="face back"><div class="mock">Manga artwork and character preview</div></div>
+          </div>
+        </article>
+        <article class="flip-card reveal delay-2" id="meetcue">
+          <div class="flip-inner">
+            <div class="face"><div class="tag">Social Product</div><h3>MeetCue</h3><p>A conversation-first social matching platform designed to make first interactions more comfortable, guided and meaningful.</p><div class="bottom"><span>In development</span><span>Flip card ↗</span></div></div>
+            <div class="face back"><div class="mock">MeetCue product interface preview</div></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="kicker reveal">Professional background</div>
+      <div class="focus-layout">
+        <div class="about-copy reveal delay-1">Eight years of experience across Synchrony, Dell, Tech Mahindra and Wipro, covering collections, order management, customer support and technical troubleshooting.</div>
+        <aside class="focus-links reveal delay-2">
+          <a class="focus-link" href="#focusos">
+            <span class="focus-icon">AI</span><span><strong>AI Productivity Tools</strong><small>Applied through the FocusOS productivity platform.</small></span><span>→</span>
+          </a>
+          <a class="focus-link" href="#manga">
+            <span class="focus-icon">MG</span><span><strong>Visual Storytelling & World-Building</strong><small>Developed through the original manga project.</small></span><span>→</span>
+          </a>
+          <a class="focus-link" href="#meetcue">
+            <span class="focus-icon">MC</span><span><strong>Human-Centred Social Product Design</strong><small>Explored through MeetCue’s conversation-first experience.</small></span><span>→</span>
+          </a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="projects-head reveal">
+        <div><div class="kicker">Learning & credentials</div><h2>Skills & certifications</h2></div>
+        <p>A focused view of the formal learning and practical skills supporting my transition into technology.</p>
+      </div>
+      <div class="skills-grid">
+        <article class="skill-card reveal">
+          <div class="skill-mark">SQL</div>
+          <h3>SQL Fundamentals</h3>
+          <p>Currently building foundational skills in databases, queries, filtering, joins and structured data analysis.</p>
+        </article>
+        <article class="skill-card reveal delay-1">
+          <div class="skill-mark">10X</div>
+          <h3>BE10X AI Tools & ChatGPT Workshop</h3>
+          <p>Completed training focused on AI productivity tools, prompt-based workflows, AI-assisted analysis, presentations, coding and debugging.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact reveal" id="contact">
+      <div class="kicker">Contact</div>
+      <h2>say hello</h2>
+      <p>Although I’m not currently looking for freelance opportunities, my inbox is always open. Whether it’s for a potential project, a professional opportunity, or simply to say hello, I’ll do my best to respond.</p>
+      <div class="contact-icon-row">
+        <a class="contact-icon-link" aria-label="Email Md Nayeem Lapasam" href="mailto:mnlapasam@gmail.com">
+          <img src="assets/images/gmail.jpg" alt="Gmail">
+        </a>
+        <a class="contact-icon-link phone-link" aria-label="Call Md Nayeem Lapasam" href="tel:+919676720772">
+          <img src="assets/images/phone.png" alt="Phone">
+        </a>
+        <a class="contact-icon-link linkedin-full" target="_blank" aria-label="Open LinkedIn profile" href="https://www.linkedin.com/in/md-nayeem-lapasam">
+          <img src="assets/images/linkedin-full.png" alt="LinkedIn">
+        </a>
+      </div>
+      <div class="contact-details">
+        <div><strong>Email:</strong> mnlapasam@gmail.com</div>
+        <div><strong>Phone:</strong> +91 96767-20772</div>
+      </div>
+    </section>
+
+    <footer><span>© 2026 Md Nayeem Lapasam</span><span>Operations · AI · Automation · Product Development</span></footer>
+  </main>
+
+  <script>
+    document.querySelectorAll('.flip-card').forEach(card => card.addEventListener('click', () => card.classList.toggle('active')));
+
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.16 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    const canvas=document.getElementById('stars'),ctx=canvas.getContext('2d');
+    let stars=[],mouse={x:-9999,y:-9999};
+    function resize(){
+      const rect=canvas.getBoundingClientRect(),dpr=Math.min(window.devicePixelRatio||1,2);
+      canvas.width=rect.width*dpr;canvas.height=rect.height*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+      stars=Array.from({length:165},()=>({x:Math.random()*rect.width,y:Math.random()*rect.height,ox:0,oy:0,vx:0,vy:0,r:.7+Math.random()*1.2,a:.10+Math.random()*.30}))
+        .map(s=>(s.ox=s.x,s.oy=s.y,s));
+    }
+    function draw(){
+      ctx.clearRect(0,0,canvas.clientWidth,canvas.clientHeight);
+      stars.forEach(s=>{
+        const dx=s.x-mouse.x,dy=s.y-mouse.y,dist=Math.hypot(dx,dy),radius=125;
+        if(dist<radius&&dist>.1){const force=(1-dist/radius)*.8;s.vx+=(dx/dist)*force;s.vy+=(dy/dist)*force}
+        s.vx+=(s.ox-s.x)*.03;s.vy+=(s.oy-s.y)*.03;s.vx*=.88;s.vy*=.88;s.x+=s.vx;s.y+=s.vy;
+        const active=Math.max(0,1-dist/radius);
+        ctx.beginPath();ctx.fillStyle=`rgba(${active?217:180},${active?119:145},${active?69:95},${s.a+active*.35})`;
+        ctx.arc(s.x,s.y,s.r+active*1.2,0,Math.PI*2);ctx.fill();
+      });
+      requestAnimationFrame(draw);
+    }
+    window.addEventListener('resize',resize);
+    window.addEventListener('mousemove',e=>{const r=canvas.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top});
+    window.addEventListener('mouseleave',()=>mouse={x:-9999,y:-9999});
+    resize();draw();
+  </script>
+</body>
+</html>
